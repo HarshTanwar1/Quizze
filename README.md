@@ -22,17 +22,14 @@ The project is backed by a carefully designed **relational schema** (modeled fro
 
 <br>
 
-## ✨ Key Features
+## 🌟 Key Highlights
 
-|     | Feature                 | Description                                                                       |
-| --- | ----------------------- | --------------------------------------------------------------------------------- |
-| 🔐  | **Dual Authentication** | Separate registration & login flows for **teachers** and **students**.            |
-| 📚  | **Course Management**   | Teachers create courses and enroll registered students in them.                   |
-| 🧠  | **Quiz Builder**        | Course-wise quizzes with multiple-choice questions (up to four options each).     |
-| ⏱️  | **Timed Access**        | Quizzes are attemptable only within the date/time window set by the teacher.      |
-| ⚡   | **Auto-Grading**        | Responses are scored against correct answers automatically — no manual marking.   |
-| 📊  | **Instant Results**     | Results display immediately after a quiz ends, visible to students and teachers.  |
-| 🛠️  | **Admin Panel**         | Django admin to manage students, teachers, courses, quizzes, questions & results. |
+- 🎓 **Role-based platform** — distinct experiences for teachers (create courses & quizzes) and students (enroll & attempt).
+- ⏱️ **Time-gated quizzes** — quizzes open and close automatically within a teacher-defined window.
+- ⚡ **Zero manual grading** — answers are evaluated server-side and scored instantly.
+- 🗄️ **Normalized 7-entity schema** — designed from an ER diagram with composite keys and foreign-key relationships.
+- 🧩 **Dynamic question forms** — multi-question quiz creation powered by Django formsets.
+- 🛠️ **Built-in admin** — full data management out of the box via the Django admin panel.
 
 <br>
 
@@ -43,6 +40,59 @@ The project is backed by a carefully designed **relational schema** (modeled fro
 | **Front-End** | HTML, CSS, JavaScript, Bootstrap, jQuery, Django Template Language               |
 | **Back-End**  | Python, Django 3.1.7                                                             |
 | **Database**  | MySQL — with `mysqlclient` / `mysql-connector-python` & `django-composite-field` |
+
+<br>
+
+## ✨ Features & Functionality
+
+| Feature                    | Description                                                                       |
+| -------------------------- | --------------------------------------------------------------------------------- |
+| 🔐 **Dual Authentication** | Separate registration & login flows for **teachers** and **students**.            |
+| 📚 **Course Management**   | Teachers create courses and enroll registered students in them.                   |
+| 🧠 **Quiz Builder**        | Course-wise quizzes with multiple-choice questions (up to four options each).     |
+| ⏱️ **Timed Access**        | Quizzes are attemptable only within the date/time window set by the teacher.      |
+| ⚡ **Auto-Grading**         | Responses are scored against correct answers automatically — no manual marking.   |
+| 📊 **Instant Results**     | Results display immediately after a quiz ends, visible to students and teachers.  |
+| 🛠️ **Admin Panel**         | Django admin to manage students, teachers, courses, quizzes, questions & results. |
+
+<br>
+
+## 🗃️ Database Design
+
+<details>
+<summary><strong>ER Model Description</strong> (click to expand)</summary>
+
+<br>
+
+- If the teacher and student have an existing account they can log in; otherwise they can register and create their account.
+- Users set up their own username and password.
+- The teacher enrolls students into their respective courses.
+- The teacher can create quizzes and link them to their courses. Every quiz has a unique ID.
+- Students enrolled in a course can view details of upcoming and previous quizzes.
+- Each question of a quiz has a unique ID.
+- A student's response to each question is uniquely identified by the student's roll number and the question's ID.
+
+**Entities and Attributes**
+
+| Entity        | Attributes                                                          | Primary Key                 |
+| ------------- | ------------------------------------------------------------------- | --------------------------- |
+| **Students**  | RollNo, Name, Mail, Password                                        | RollNo                      |
+| **Courses**   | Course_ID, Course_Name                                              | Course_ID                   |
+| **Teacher**   | Teacher_ID, Name, Mail, Password                                    | Teacher_ID                  |
+| **Quiz**      | quiz_id, Course_ID, duration, date, start_time, end_time, quiz_name | quiz_id                     |
+| **Questions** | q_id, quiz_id, question, ans, opt1, opt2, opt3, opt4                | q_id                        |
+| **Responses** | RollNo, q_id, response                                              | (RollNo, q_id) composite    |
+| **Results**   | RollNo, quiz_id, marks                                              | (RollNo, quiz_id) composite |
+
+</details>
+
+### ER Model
+
+![ER Model](https://github.com/avnishranwa7/Quiz/blob/main/ER%20Model.png)
+
+### Relational Schema
+
+![Relational Schema](https://github.com/avnishranwa7/Quiz/blob/main/Relational%20Schema.jpg)
 
 <br>
 
@@ -131,45 +181,6 @@ Admin panel 👉 `http://127.0.0.1:8000/admin/`
 - 🧩 **Features:** more question types (true/false, multi-select, descriptive), a question bank, quiz randomization, per-question timers, and analytics/leaderboards.
 - 📧 **Notifications:** email results and quiz reminders via Django's email backend / SMTP.
 - 🧪 **Quality:** expose **REST APIs** (Django REST Framework) for a decoupled front end.
-
-<br>
-
-## 🗃️ Database Design
-
-<details>
-<summary><strong>ER Model Description</strong> (click to expand)</summary>
-
-<br>
-
-- If the teacher and student have an existing account they can log in; otherwise they can register and create their account.
-- Users set up their own username and password.
-- The teacher enrolls students into their respective courses.
-- The teacher can create quizzes and link them to their courses. Every quiz has a unique ID.
-- Students enrolled in a course can view details of upcoming and previous quizzes.
-- Each question of a quiz has a unique ID.
-- A student's response to each question is uniquely identified by the student's roll number and the question's ID.
-
-**Entities and Attributes**
-
-| Entity        | Attributes                                                          | Primary Key                 |
-| ------------- | ------------------------------------------------------------------- | --------------------------- |
-| **Students**  | RollNo, Name, Mail, Password                                        | RollNo                      |
-| **Courses**   | Course_ID, Course_Name                                              | Course_ID                   |
-| **Teacher**   | Teacher_ID, Name, Mail, Password                                    | Teacher_ID                  |
-| **Quiz**      | quiz_id, Course_ID, duration, date, start_time, end_time, quiz_name | quiz_id                     |
-| **Questions** | q_id, quiz_id, question, ans, opt1, opt2, opt3, opt4                | q_id                        |
-| **Responses** | RollNo, q_id, response                                              | (RollNo, q_id) composite    |
-| **Results**   | RollNo, quiz_id, marks                                              | (RollNo, quiz_id) composite |
-
-</details>
-
-### ER Model
-
-![ER Model](https://github.com/avnishranwa7/Quiz/blob/main/ER%20Model.png)
-
-### Relational Schema
-
-![Relational Schema](https://github.com/avnishranwa7/Quiz/blob/main/Relational%20Schema.jpg)
 
 <br>
 
