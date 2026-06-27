@@ -96,27 +96,27 @@ The project is backed by a carefully designed **relational schema** (modeled fro
 
 ## 🚀 Getting Started
 
-**1. Clone the repository**
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/HarshTanwar1/Quizze.git
 cd Quiz
 ```
 
-**2. Create and activate a virtual environment**
+### 2. Create and activate a virtual environment _(recommended)_
 
 ```bash
 python -m venv venv
 source venv/bin/activate      # On Windows: venv\Scripts\activate
 ```
 
-**3. Install dependencies**
+### 3. Install dependencies
 
 ```bash
 pip install django==3.1.7 mysqlclient mysql-connector-python django-composite-field
 ```
 
-**4. Set up the MySQL database**
+### 4. Set up the MySQL database
 
 Create a database, then update the `DATABASES` block in `Quiz_App/settings.py` with your own credentials:
 
@@ -137,27 +137,26 @@ DATABASES = {
 }
 ```
 
-**5. Apply migrations**
+### 5. Apply migrations
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-**6. Create an admin (superuser) account**
+### 6. Create an admin (superuser) account
 
 ```bash
 python manage.py createsuperuser
 ```
 
-**7. Run the development server**
+### 7. Run the development server
 
 ```bash
 python manage.py runserver
 ```
 
-**8. Open the app** 👉 `http://127.0.0.1:8000/`
-Admin panel 👉 `http://127.0.0.1:8000/admin/`
+Open the app 👉 `http://127.0.0.1:8000/`
 
 <br>
 
