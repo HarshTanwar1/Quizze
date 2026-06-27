@@ -45,15 +45,13 @@ The project is backed by a carefully designed **relational schema** (modeled fro
 
 ## ✨ Features & Functionality
 
-| Feature                    | Description                                                                       |
-| -------------------------- | --------------------------------------------------------------------------------- |
-| 🔐 **Dual Authentication** | Separate registration & login flows for **teachers** and **students**.            |
-| 📚 **Course Management**   | Teachers create courses and enroll registered students in them.                   |
-| 🧠 **Quiz Builder**        | Course-wise quizzes with multiple-choice questions (up to four options each).     |
-| ⏱️ **Timed Access**        | Quizzes are attemptable only within the date/time window set by the teacher.      |
-| ⚡ **Auto-Grading**         | Responses are scored against correct answers automatically — no manual marking.   |
-| 📊 **Instant Results**     | Results display immediately after a quiz ends, visible to students and teachers.  |
-| 🛠️ **Admin Panel**         | Django admin to manage students, teachers, courses, quizzes, questions & results. |
+- 🔐 **Dual Authentication** — separate registration & login flows for teachers and students.
+- 📚 **Course Management** — teachers create courses and enroll registered students in them.
+- 🧠 **Quiz Builder** — course-wise quizzes with multiple-choice questions (up to four options each).
+- ⏱️ **Timed Access** — quizzes are attemptable only within the date/time window set by the teacher.
+- ⚡ **Auto-Grading** — responses are scored against correct answers automatically, with no manual marking.
+- 📊 **Instant Results** — results display immediately after a quiz ends, visible to students and teachers.
+- 🛠️ **Admin Panel** — Django admin to manage students, teachers, courses, quizzes, questions & results.
 
 <br>
 
